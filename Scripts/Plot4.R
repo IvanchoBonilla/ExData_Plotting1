@@ -8,6 +8,8 @@ A <- filter(DT, Date>="2007-02-01", Date<="2007-02-02")
 B<-tbl_df(strptime(t(paste(as.character(t(A[,1])), t(A[,2]))), format = "%Y-%m-%d %H:%M:%S"))
 A<-bind_cols(A, B)
 
+png(filename = "Plot4.png", height=480, width=480, units = "px")
+
 par(mfrow=c(2,2))
 
 with(A, plot(value, Global_active_power, type = "n", ylab="Global Active Power", xlab = ""))
@@ -25,8 +27,6 @@ legend("topright", lty = c(1,1,1), lwd = c(2,2,2), col = c("black", "blue", "red
 with(A, plot(value, Global_reactive_power, type = "n", xlab="datetime"))
 with(A, lines(value, Global_reactive_power))
 
-
-png(filename = "Plot4.png", height=480, width=480, units = "px")
 dev.off()
 
 rm(DT)
